@@ -1,0 +1,76 @@
+﻿{
+	"Name": "Burger",
+	"Price": 15,
+	"Ingredients": [
+		{
+			"Name": "Bun",
+			"IsFrozen": true,
+			"NeedsCutting": true,
+			"CutsNeeded": 1,
+			"NeedsHeating": true,
+			"NeedsWashing": false,
+			"NeedsFirstAssembely": true,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Meat",
+			"IsFrozen": true,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Salat",
+			"IsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 10,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Tomato",
+			"IsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 5,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Cucumber",
+			"IsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 10,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Ketchup",
+			"IsFrozen":  false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": false,
+			"NeedsWashing": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Bun",
+			"IsFrozen": true,
+			"NeedsCutting": true,
+			"CutsNeeded": 1,
+			"NeedsHeating": true,
+			"NeedsWashing": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": true
+		}
+	]
+}
