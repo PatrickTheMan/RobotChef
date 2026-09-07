@@ -1,105 +1,119 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RobotChefProject._2_Domain;
 using RobotChefProject._3_Models.FileHandling;
-using Spectre.Console;
+using RobotChefProject._3_Models.Graphics;
+using System.Xml.Linq;
 
 namespace RobotChefProject._3_Models
 {
     public class RobotChef
     {
-        private readonly FileHandler _fileHandler = new();
+        #region FileHandler
+        private readonly FileHandler _fileHandler;
+        private readonly Visualizer _visualizer;
+        #endregion
+        #region Constructor
+        public RobotChef(FileHandler fileHandler, Visualizer visualizer)
+        {
+            this._fileHandler = fileHandler;
+            this._visualizer = visualizer;
 
+            _visualizer.Display("robot_chef", "Booting ...", 10);
+            _visualizer.Display("robot_chef", "Booted and ready to work!");
+            Thread.Sleep(1000);
+        }
+        #endregion
         public void Start()
         {
-            List<Recipe> recipies = [];
-            recipies.Add(TakeOrder("Burger"));
-            
-            Food bun = Get("Bun", isFrozen: true);
+            Recipe recipe = TakeOrder("Burger");
+
+            Ingredient bun = Get("Bun", true);
             if (bun.IsFrozen) Heat(ref bun);
             Cut(ref bun);
 
-            Food meat = Get("Meat", isFrozen: true);
+            Ingredient meat = Get("Meat", true);
             Heat(ref meat);
 
-            Food salat = Get("Salat");
+            Ingredient salat = Get("Salat");
             Wash(ref salat);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
                 Cut(ref salat);
 
-            Food tomato = Get("Tomato");
+            Ingredient tomato = Get("Tomato");
             Wash(ref tomato);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
                 Cut(ref tomato);
 
-            Food cucumber = Get("Cucumber");
+            Ingredient cucumber = Get("Cucumber");
             Wash(ref cucumber);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
                 Cut(ref cucumber);
 
-            Food ketchup = Get("Ketchup");
+            Ingredient ketchup = Get("Ketchup");
 
-            Food[] ingredients = [bun, meat, salat, tomato, cucumber, ketchup, bun.Clone()];
-            Recipe burger = Assemble("Burger" ,ingredients);
+            Ingredient[] ingredients = [bun, meat, salat, tomato, cucumber, ketchup, bun.Clone()];
+            Food burger = Assemble("Burger", ingredients);
 
-            int cash = Deliver(burger, recipies[0]);
+            int cash = Deliver(burger, recipe);
 
-            if (cash > recipies[0].Price)
+            if (cash > recipe.Price)
             {
-                int change = CalculateChange(cash, recipies[0].Price);
+                int change = CalculateChange(cash, recipe.Price);
                 GiveChange(change);
             }
         }
 
         #region Actions
+        #region Order and Get Ingredients
         private Recipe TakeOrder(string orderName)
         {
-            System.Console.WriteLine($"Order received: {orderName}");
+            _visualizer.Display("robot_chef", $"Order received: {orderName}");
+            Thread.Sleep(1000); // Simulate some delay in taking the order
             return _fileHandler.GetRecipe(orderName);
         }
-
-        private Food Get(string name, bool isFrozen = false)
+        private Ingredient Get(string name, bool isFrozen = false)
         {
-            System.Console.WriteLine($"Getting ingredient: {name}, Frozen: {isFrozen}");
+            _visualizer.Display("robot_chef_getting", $"Getting ingredient: {name}");
+            Thread.Sleep(800); // Simulate some delay in getting the ingredient
             return new() { Name = name, IsFrozen = isFrozen };
         }
-
-        private void Cut(ref Food obj)
+        #endregion
+        #region Actions on Ingredients
+        private void Cut(ref Ingredient obj)
         {
             obj.IsCut = true;
             obj.CutAmount++;
-            System.Console.WriteLine($"Cutting ingredient: {obj.Name}, Cuts amount: {obj.CutAmount}");
+            _visualizer.Display("robot_chef_cutting", $"Cutting ingredient: {obj.Name}, Cuts amount: {obj.CutAmount}", 2);
         }
-
-        private void Heat(ref Food obj)
+        private void Heat(ref Ingredient obj)
         {
-            System.Console.WriteLine($"Heating ingredient: {obj.Name}");
             obj.IsHeated = true;
             obj.IsFrozen = false;
+            _visualizer.Display("robot_chef_heating", $"Heating ingredient: {obj.Name}", 16);
         }
-
-        private void Wash(ref Food obj)
+        private void Wash(ref Ingredient obj)
         {
-            System.Console.WriteLine($"Washing ingredient: {obj.Name}");
             obj.IsWashed = true;
+            _visualizer.Display("robot_chef_washing", $"Washing ingredient: {obj.Name}", 6);
         }
-
-        private Recipe Assemble(string name, Food[] objs)
+        private void Stir(ref Ingredient obj)
         {
-            System.Console.WriteLine($"Assembling recipe: {name}");
+            obj.IsStirred = true;
+            _visualizer.Display("robot_chef_stirring", $"Stirring ingredient: {obj.Name}", 6);
+        }
+        #endregion
+        #region Assemble and Deliver
+        private Food Assemble(string name, Ingredient[] objs)
+        {
+            _visualizer.Display("robot_chef_bowl", $"Assembling/Mixing into: {name}", 20);
             return new() { Name = name, Ingredients = [.. objs] };
         }
-
-        private int Deliver(Recipe objs, Recipe recipe)
+        private int Deliver(Food objs, Recipe recipe)
         {
-            System.Console.WriteLine($"Delivering recipe: {objs.Name}");
+            _visualizer.Display("robot_chef_delivering", $"Delivering: {objs.Name}", 10);
 
             objs.Ingredients[0].IsFirstAssembled = true;
-            objs.Ingredients[objs.Ingredients.Count-1].IsLastAssembled = true;
+            objs.Ingredients[^1].IsLastAssembled = true;
 
             foreach (var e in recipe.Ingredients)
             {
@@ -109,15 +123,17 @@ namespace RobotChefProject._3_Models
                 {
                     if (e.Name == a.Name)
                     {
-                        if (a.IsFrozen == true ||
+                        if (e.FrozenNeeded != a.IsFrozen ||
                             e.NeedsCutting != a.IsCut ||
                             e.CutsNeeded != a.CutAmount ||
                             e.NeedsHeating != a.IsHeated ||
                             e.NeedsWashing != a.IsWashed ||
-                            e.NeedsFirstAssembely != a.IsFirstAssembled ||
-                            e.NeedsLastAssembely != a.IsLastAssembled)
+                            e.NeedsStirring != a.IsStirred ||
+                            e.NeedsFirstAssembely == true && a.IsFirstAssembled != true ||
+                            e.NeedsLastAssembely == true && a.IsLastAssembled != true)
                         {
                             failed = true;
+                            _visualizer.Display("robot_chef", $"Delivery might have failed Actual: {JsonConvert.SerializeObject(a)}");
                         }
                         else
                         {
@@ -129,29 +145,37 @@ namespace RobotChefProject._3_Models
                 }
                 if (!found)
                 {
-                    System.Console.WriteLine($"Delivery failed: {objs.Name} is missing ingredient: {JsonConvert.SerializeObject(e)}");
+                    _visualizer.Display("robot_chef", $"Delivery failed: {objs.Name} is missing ingredient: {JsonConvert.SerializeObject(e)}");
                     return 0;
                 }
                 if (failed)
                 {
-                    System.Console.WriteLine($"Delivery failed: {objs.Name} has wrong ingredient:\n Expected: {JsonConvert.SerializeObject(e)}");
+                    _visualizer.Display("robot_chef", $"Delivery failed: {objs.Name} has wrong ingredient:\n Expected: {JsonConvert.SerializeObject(e)}");
                     return 0;
                 }
             }
 
-            System.Console.WriteLine($"Delivery successful: {objs.Name}");
+            _visualizer.Display("robot_chef", $"Delivery successful: {objs.Name}");
+            Thread.Sleep(2000); // Simulate some delay in delivering the food
             return new Random().Next(recipe.Price, recipe.Price * 2);
         }
-
+        #endregion
+        #region Payment
         private int CalculateChange(int cash, int price)
         {
-            System.Console.WriteLine($"Calculating change: Cash received: {cash}, Price: {price}");
+            _visualizer.Display("robot_chef", $"Calculating change: Cash received: {cash}, Price: {price}", 10);
             return cash - price;
         }
-
         private void GiveChange(int cash)
         {
-            System.Console.WriteLine($"Change given: {cash}");
+            _visualizer.Display("robot_chef", $"Change given: {cash}", 8);
+        }
+        #endregion
+        #endregion
+        #region History
+        public void History()
+        {
+            _visualizer.DisplayHistory();
         }
         #endregion
     }

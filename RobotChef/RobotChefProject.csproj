@@ -10,9 +10,16 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Spectre.Console" Version="0.57.2" />
+    <PackageReference Include="Spectre.Console.ImageSharp" Version="0.57.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="1_Resources\bmo.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="1_Resources\tomatosauce.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="1_Resources\burger.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -22,10 +29,22 @@
     <None Update="1_Resources\robot_chef_bowl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="1_Resources\robot_chef_cut.png">
+    <None Update="1_Resources\robot_chef_cutting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="1_Resources\robot_chef_stir.png">
+    <None Update="1_Resources\robot_chef_delivering.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="1_Resources\robot_chef_getting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="1_Resources\robot_chef_heating.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="1_Resources\robot_chef_stirring.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="1_Resources\robot_chef_washing.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

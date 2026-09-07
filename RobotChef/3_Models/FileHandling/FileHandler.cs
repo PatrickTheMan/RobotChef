@@ -36,7 +36,7 @@ namespace RobotChefProject._3_Models.FileHandling
             string? imagePath = null;
             if (!imageName.Equals(""))
             {
-                imagePath = Path.Combine(_resourceFolderPath, $"/{imageName}.png");
+                imagePath = $"{_resourceFolderPath}/{imageName}.png";
             }
             return imagePath;
         }

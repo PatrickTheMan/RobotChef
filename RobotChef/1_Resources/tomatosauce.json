@@ -1,0 +1,61 @@
+﻿{
+	"Name": "TomatoSauce",
+	"Price": 5,
+	"Ingredients": [
+		{
+			"Name": "Tomato",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": true,
+			"NeedsStirring": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Tomato",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": true,
+			"NeedsStirring": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Tomato",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": true,
+			"NeedsStirring": true,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Water",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": false,
+			"NeedsWashing": false,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Salt",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": false,
+			"NeedsWashing": false,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		}
+	]
+}

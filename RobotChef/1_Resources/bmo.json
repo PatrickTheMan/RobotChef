@@ -1,0 +1,39 @@
+﻿{
+	"Name": "Burger",
+	"Price": 15,
+	"Ingredients": [
+		{
+			"Name": "Bun",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": false,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": true,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Cheese",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": false,
+			"NeedsWashing": false,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Bun",
+			"NeedsFrozen": false,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
+			"NeedsHeating": true,
+			"NeedsWashing": false,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": true
+		}
+	]
+}

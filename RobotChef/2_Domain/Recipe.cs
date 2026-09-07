@@ -10,6 +10,6 @@ namespace RobotChefProject._2_Domain
     {
         public required string Name { get; set; }
         public int Price { get; set; }
-        public required List<Food> Ingredients { get; set; }
+        public required List<RecipeIngredient> Ingredients { get; set; }
     }
 }
