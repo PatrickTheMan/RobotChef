@@ -25,43 +25,22 @@ namespace RobotChefProject._3_Models
         #endregion
         public void Start()
         {
-            Recipe recipe = TakeOrder(RecipeNames.Burger);
+            // Write the RobotCheft code hereunder:
 
-            Ingredient bunBottom = Get(IngredientNames.Bun, true);
-            if (bunBottom.IsFrozen) Heat(ref bunBottom);
-            Ingredient bunTop = Get(IngredientNames.Bun, true);
-            if (bunTop.IsFrozen) Heat(ref bunTop);
 
-            Ingredient meat = Get(IngredientNames.Meat, true);
-            Heat(ref meat);
 
-            Ingredient salat = Get(IngredientNames.Salat);
-            Wash(ref salat);
-            for (int i = 0; i < 5; i++)
-                Cut(ref salat);
 
-            Ingredient tomato = Get(IngredientNames.Tomato);
-            Wash(ref tomato);
-            for (int i = 0; i < 3; i++)
-                Cut(ref tomato);
 
-            Ingredient cucumber = Get(IngredientNames.Cucumber);
-            Wash(ref cucumber);
-            for (int i = 0; i < 3; i++)
-                Cut(ref cucumber);
 
-            Ingredient ketchup = Get(IngredientNames.Ketchup);
 
-            Ingredient[] ingredients = [bunBottom, meat, salat, tomato, cucumber, ketchup, bunTop];
-            Food burger = Prepare(RecipeNames.Burger, ingredients);
 
-            int cash = Deliver(burger, recipe);
 
-            if (cash > recipe.Price)
-            {
-                int change = CalculateChange(cash, recipe.Price);
-                GiveChange(change);
-            }
+
+
+
+
+
+
         }
 
         #region Actions
@@ -170,6 +149,11 @@ namespace RobotChefProject._3_Models
                 listSpan[i].IsHeated = false;
             }
             _visualizer.Display("robot_chef_getting", $"Freezing mix: {mix.Name}", 20);
+        }
+        private void Mix(ref Mix mix, Ingredient[] ingredients)
+        {
+            mix.Ingredients.AddRange(ingredients);
+            _visualizer.Display("robot_chef_bowl", $"Mixing ingredients into: {mix.Name}", 8);
         }
         #endregion
         #region Assemble and Deliver

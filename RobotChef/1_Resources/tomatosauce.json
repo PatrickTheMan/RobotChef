@@ -40,9 +40,9 @@
 			"NeedsFrozen": false,
 			"NeedsCutting": false,
 			"CutsNeeded": 0,
-			"NeedsHeating": false,
+			"NeedsHeating": true,
 			"NeedsWashing": false,
-			"NeedsStirring": false,
+			"NeedsStirring": true,
 			"NeedsFirstAssembely": false,
 			"NeedsLastAssembely": false
 		},

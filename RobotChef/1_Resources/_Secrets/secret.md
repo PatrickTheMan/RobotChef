@@ -85,7 +85,8 @@ Ingredient bunTop = Get(IngredientNames.Bun, true);
 if (bunTop.IsFrozen) Heat(ref bunTop);
 
 Ingredient meat = Get(IngredientNames.Meat, true);
-Heat(ref meat);
+if (meat.IsFrozen)
+    Heat(ref meat);
 
 Ingredient salat = Get(IngredientNames.Salat);
 Wash(ref salat);
