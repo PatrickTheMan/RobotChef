@@ -6,6 +6,31 @@ using System.Threading.Tasks;
 
 namespace RobotChefProject._2_Domain
 {
+    public enum IngredientNames
+    {
+        Salat,
+        Tomato,
+        Cucumber,
+        Onion,
+        Pepper,
+        Carrot,
+        Potato,
+        Chicken,
+        Meat,
+        Fish,
+        Rice,
+        Pasta,
+        Cheese,
+        Egg,
+        Milk,
+        Butter,
+        Flour,
+        Sugar,
+        Salt,
+        Bun,
+        Water,
+        Ketchup
+    }
     public class Ingredient
     {
 

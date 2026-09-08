@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace RobotChefProject._2_Domain
 {
+    public enum RecipeNames
+    {
+        Salad,
+        Burger,
+        Bmo,
+        TomatoSauce
+    }
     public class Recipe
     {
         public required string Name { get; set; }

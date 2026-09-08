@@ -1,0 +1,39 @@
+﻿{
+	"Name": "Burger",
+	"Price": 15,
+	"Ingredients": [
+		{
+			"Name": "Salat",
+			"NeedsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 5,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Tomato",
+			"NeedsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 5,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		},
+		{
+			"Name": "Cucumber",
+			"NeedsFrozen": false,
+			"NeedsCutting": true,
+			"CutsNeeded": 5,
+			"NeedsHeating": false,
+			"NeedsWashing": true,
+			"NeedsStirring": false,
+			"NeedsFirstAssembely": false,
+			"NeedsLastAssembely": false
+		}
+	]
+}

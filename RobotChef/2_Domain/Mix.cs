@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace RobotChefProject._2_Domain
 {
-    public class Food : Mix
+    public class Mix
     {
-        public int Price { get; set; }
+        public required string Name { get; set; }
+        public required List<Ingredient> Ingredients { get; set; }
     }
 }

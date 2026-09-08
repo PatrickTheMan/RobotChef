@@ -5,8 +5,8 @@
 		{
 			"Name": "Bun",
 			"NeedsFrozen": false,
-			"NeedsCutting": true,
-			"CutsNeeded": 1,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
 			"NeedsHeating": true,
 			"NeedsWashing": false,
 			"NeedsStirring": false,
@@ -71,8 +71,8 @@
 		{
 			"Name": "Bun",
 			"NeedsFrozen": false,
-			"NeedsCutting": true,
-			"CutsNeeded": 1,
+			"NeedsCutting": false,
+			"CutsNeeded": 0,
 			"NeedsHeating": true,
 			"NeedsWashing": false,
 			"NeedsStirring": false,
